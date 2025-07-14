@@ -1,13 +1,9 @@
-Request
-
-{
-  `path`: `.github/workflows/daily-horoscope-update.yml`,
-  `content`: `# .github/workflows/daily-horoscope-update.yml
+# .github/workflows/daily-horoscope-update.yml
 name: Daily Satirical Cosmic Updates
 
 on:
   schedule:
-    - cron: '0 5 * * *'  # 7:00 AM CEST (winter)
+    - cron: '0 5 * * *'  # 7:00 AM CEST (winter) - note the five asterisks
   workflow_dispatch: # Manual trigger for testing cosmic automation
 
 jobs:
@@ -36,10 +32,10 @@ jobs:
     
     - name: Commit Daily Mockery
       run: |
-        git config --local user.email \"action@github.com\"
-        git config --local user.name \"Cosmic Automation Bot\"
+        git config --local user.email "action@github.com"
+        git config --local user.name "Cosmic Automation Bot"
         git add .
-        git diff --staged --quiet || git commit -m \"Daily cosmic delusion update - $(date +'%Y-%m-%d')\"
+        git diff --staged --quiet || git commit -m "Daily cosmic delusion update - $(date +'%Y-%m-%d')"
         git push
     
     - name: Deploy to GitHub Pages
@@ -47,5 +43,4 @@ jobs:
       if: success()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist`
-}
+        publish_dir: ./dist
